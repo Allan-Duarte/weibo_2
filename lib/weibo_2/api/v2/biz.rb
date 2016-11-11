@@ -9,7 +9,7 @@ module WeiboOAuth2
         end
 
         # https://c.api.weibo.com/2/statuses/show_batch/biz.json
-        def show_status(id)
+        def show_status(id, opt={})
           hashie get("statuses/show_batch/biz.json", :params => opt)
         end
 
