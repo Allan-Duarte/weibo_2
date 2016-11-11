@@ -16,6 +16,10 @@ module WeiboOAuth2
         def repost(id, opt={})
           hashie post("statuses/repost/biz.json", :params => {"id" => id}.merge(opt))
         end
+
+        def create_comment(comment, id, opt={})
+          hashie post("comments/create/biz.json", :params => {:comment => comment, :id => id}.merge(opt))
+        end
       end
     end
   end
