@@ -10,6 +10,7 @@ module WeiboOAuth2
 
         # https://c.api.weibo.com/2/statuses/show_batch/biz.json
         def show_status(id, opt={})
+          opt.merge!({ :ids => id })
           hashie get("statuses/show_batch/biz.json", :params => opt)
         end
 
