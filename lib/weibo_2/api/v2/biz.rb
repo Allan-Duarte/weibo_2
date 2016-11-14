@@ -14,6 +14,12 @@ module WeiboOAuth2
           hashie get("statuses/show_batch/biz.json", :params => opt)
         end
 
+        # https://c.api.weibo.com/2/comments/show/biz.json
+        def load_comments(post_id, opt={})
+          opt.merge!({ :id => post_id })
+          hashie get("comments/show/biz.json", :params => opt)
+        end
+
         #write interfaces
         # https://c.api.weibo.com/2/friendships/create/biz.json
         def create_friendships(opt={})
