@@ -3,6 +3,7 @@ module WeiboOAuth2
     module V2
       class Biz < Base
         #read interfaces
+        # https://c.api.weibo.com/2/statuses/user_timeline_batch.json
         def user_timeline(uids, opt={})
           opt.merge!(uids: uids)
           hashie get("statuses/user_timeline_batch.json", :params => opt)
@@ -32,6 +33,11 @@ module WeiboOAuth2
           hashie post("friendships/create/biz.json", :params => opt)
         end
 
+        # https://c.api.weibo.com/2/friendships/destroy/biz.json
+        def destroy_friendship(opt={})
+          hashie post("friendships/destroy/biz.json", :params => opt)
+        end
+
         # https://c.api.weibo.com/2/statuses/repost/biz.json
         def repost(id, opt={})
           hashie post("statuses/repost/biz.json", :params => {"id" => id}.merge(opt))
@@ -40,6 +46,11 @@ module WeiboOAuth2
         # https://c.api.weibo.com/2/comments/create/biz.json
         def create_comment(comment, id, opt={})
           hashie post("comments/create/biz.json", :params => {:comment => comment, :id => id}.merge(opt))
+        end
+
+        # https://c.api.weibo.com/2/comments/destroy/biz.json
+        def delete_comment(comment_id, opt={})
+          hashie post("comments/destroy/biz.json", :params => {:cid => comment_id}.merge(opt))
         end
       end
     end
