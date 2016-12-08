@@ -12,8 +12,20 @@ module WeiboOAuth2
       @access_token = WeiboOAuth2::AccessToken.new( self, access_token, hash.merge(:header_format => 'OAuth2 %s', :param_name => 'access_token') )
     end
 
-    def biz
-      @biz ||= WeiboOAuth2::Api::V2::Biz.new(@access_token) if @access_token
+    def comments
+      @comments ||= WeiboOAuth2::Api::Biz::Comments.new(@access_token) if @access_token
+    end
+
+    def users
+      @users ||= WeiboOAuth2::Api::Biz::Users.new(@access_token) if @access_token
+    end
+
+    def statuses
+      @statues ||= WeiboOAuth2::Api::Biz::Statuses.new(@access_token) if @access_token
+    end
+
+    def friendships
+      @friendships ||= WeiboOAuth2::Api::Biz::Friendships.new(@access_token) if @access_token
     end
   end
 end
