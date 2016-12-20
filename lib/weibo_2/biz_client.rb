@@ -27,5 +27,9 @@ module WeiboOAuth2
     def friendships
       @friendships ||= WeiboOAuth2::Api::Biz::Friendships.new(@access_token) if @access_token
     end
+
+    def place
+      @place ||= WeiboOAuth2::Api::Biz::Place.new(@access_token) if @access_token
+    end    
   end
 end
